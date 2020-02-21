@@ -26,6 +26,20 @@ fn main() {
     let a: i128 = 10;
     println!("Min i8 is {}", std::i128::MIN);
     println!("Max i8 is {}", std::i128::MAX);
+
+    // Depend on your computer arch (32 or 64-bits)
+    let some_isize: isize = 10;
+    let some_usize: usize = 10;
+
+    // Floats
+    let some_single: f32 = 10.; // the decimal is required!!
+    let some_double: f64 = 10.;
+
+    // Compiler assumes double if not specified
+    let another_doub = 10.0; // 64-bit double!
+
+    // Char's
+    let some_char: char = 'a'; // Single quotes!
 }
 
 // > cargo build
