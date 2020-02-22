@@ -1,4 +1,5 @@
 // > npm run dev
+// > npm run build
 
 // Don't need to repeat again:
 // > rustup target add wasm32-unknown-unknown
