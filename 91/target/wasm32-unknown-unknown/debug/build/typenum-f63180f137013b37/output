@@ -1,0 +1,2 @@
+cargo:rustc-env=TYPENUM_BUILD_OP=C:\dev\rust\91\target\wasm32-unknown-unknown\debug\build\typenum-f63180f137013b37\out\consts.rs
+cargo:rustc-env=TYPENUM_BUILD_CONSTS=C:\dev\rust\91\target\wasm32-unknown-unknown\debug\build\typenum-f63180f137013b37\out\op.rs
