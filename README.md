@@ -7,6 +7,12 @@
 .
 .
 
+* WasmByExample: https://wasmbyexample.dev
+
+.
+.
+.
+
 * 90: WebAssembly (part-1):  Base setup
 * 91: WebAssembly (part-2):  Rust <-> WASM
 * 92: WebAssembly (part-3):  Finishing the boilerplate setup
