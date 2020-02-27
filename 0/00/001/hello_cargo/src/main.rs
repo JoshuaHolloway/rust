@@ -11,5 +11,11 @@ fn main() {
 // Build:
 // > cargo build
 
-// Run:
+// Run (compiles and runs if not already build):
 // > cargo run
+
+// Check code to make sure it compiles:
+// > cargo check
+
+// Build for release:
+// cargo build --release
