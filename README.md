@@ -1,6 +1,8 @@
 # rust
 * 0: Official Rust Book
-    * 
+    * 00: Getting Started
+        * 000: Hello
+        * 001: Cargo
 
 * 1: WasmByExample: https://wasmbyexample.dev
 
@@ -15,7 +17,3 @@
     * 92: WebAssembly (part-3):  Finishing the boilerplate setup
     * Going deeper with WebGL (Taking the red-pill):
         * 93: WebAssembly (part-4):  2D-graphics intro
-
-
-
-* 
