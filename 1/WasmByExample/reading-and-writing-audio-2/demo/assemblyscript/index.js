@@ -1,4 +1,9 @@
-import wasmInit from "./pkg/audio.js";
+// Imports are from the demo-util folder in the repo
+// https://github.com/torch2424/wasm-by-example/blob/master/demo-util/
+
+import { wasmBrowserInstantiate } from "/demo-util/instantiateWasm.js";
+
+// Some general initialization for audio
 
 // Create our audio context
 const audioContext = new (window.AudioContext || window.webkitAudioContext)();
@@ -49,21 +54,25 @@ const byteSamplesToFloatSamples = byteSamples => {
 
 const runWasm = async () => {
   // Instantiate our wasm module
-  const rustWasm = await wasmInit("./pkg/audio_bg.wasm");
+  const wasmModule = await wasmBrowserInstantiate("./index.wasm");
+
+  // Get our exports object, with all of our exported Wasm Properties
+  const exports = wasmModule.instance.exports;
+
+  // Get our memory object from the exports
+  const memory = exports.memory;
 
   // Create a Uint8Array to give us access to Wasm Memory
-  const wasmByteMemoryArray = new Uint8Array(rustWasm.memory.buffer);
+  const wasmByteMemoryArray = new Uint8Array(memory.buffer);
 
   // Generate 1024 float audio samples,
   // and make a quiet / simple square wave
   const sampleValue = 0.3;
   for (let i = 0; i < numberOfSamples; i++) {
     if (i < numberOfSamples / 2) {
-      // originalAudioSamples[i] = sampleValue;
-      originalAudioSamples[i] = sampleValue * Math.sin(i/16);
+      originalAudioSamples[i] = sampleValue;
     } else {
-      // originalAudioSamples[i] = sampleValue * -1;
-      originalAudioSamples[i] = sampleValue * Math.sin(i/16);
+      originalAudioSamples[i] = sampleValue * -1;
     }
   }
 
@@ -74,19 +83,20 @@ const runWasm = async () => {
   );
 
   // Fill our wasm memory with the converted Audio Samples,
-  // And store it at our inputPointer location (index)
-  const inputPointer = rustWasm.get_input_buffer_pointer();
-  wasmByteMemoryArray.set(originalByteAudioSamples, inputPointer);
+  // And store it at our INPUT_BUFFER_POINTER (wasm memory index)
+  wasmByteMemoryArray.set(
+    originalByteAudioSamples,
+    exports.INPUT_BUFFER_POINTER.valueOf()
+  );
 
   // Amplify our loaded samples with our export Wasm function
-  rustWasm.amplify_audio();
+  exports.amplifyAudioInBuffer();
 
-  // Get our outputPointer (index were the sample buffer was stored)
   // Slice out the amplified byte audio samples
-  const outputPointer = rustWasm.get_output_buffer_pointer();
   const outputBuffer = wasmByteMemoryArray.slice(
-    outputPointer,
-    outputPointer + numberOfSamples
+    exports.OUTPUT_BUFFER_POINTER.valueOf(),
+    exports.OUTPUT_BUFFER_POINTER.valueOf() +
+      exports.OUTPUT_BUFFER_SIZE.valueOf()
   );
 
   // Convert our amplified byte samples into float samples,
@@ -157,44 +167,3 @@ window.pause = () => {
   beforePlay();
   stopAudioBufferSource();
 };
-
-
-// ========================================================
-
-// Create a ScriptProcessorNode
-const bufferSize = 1024;
-const processor = audioContext.createScriptProcessor(bufferSize);
-
-// Assign the onProcess function to be called for every buffer
-processor.onaudioprocess = onProcess;
-
-function onProcess(e) {
-    let leftIn = e.inputBuffer.getChannelData(0);
-    let rightIn = e.inputBuffer.getChannelData(1);
-    let leftOut = e.outputBuffer.getChannelData(0);
-    let rightOut = e.outputBuffer.getChannelData(1);
-
-
-    for (var i = 0; i < leftIn.length; i++) {
-
-      leftOut[i] = 0.5 * leftIn[i];
-      rightOut[i] = rightIn[i];
-    }
-}
-
-// instigate our audio context
-
-// load some sound
-const audioElement = document.querySelector('audio');
-const playButton = document.querySelector('.tape-controls-play');
-
-// play pause audio
-playButton.addEventListener('click', function() {
-
-  let track = audioContext.createMediaElementSource(audioElement);
-  track.connect(processor).connect(audioContext.destination);
-  audioElement.play();
-
-}, false);
-
-
