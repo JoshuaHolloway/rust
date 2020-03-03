@@ -12,6 +12,8 @@ const audioBuffer = audioContext.createBuffer(
   audioContext.sampleRate
 );
 
+console.log(`audioContext.sampleRate = ${audioContext.sampleRate}`);
+
 // Create our originalAudioSamples, and our amplifiedAudioSamples Buffers
 const originalAudioSamples = new Float32Array(numberOfSamples);
 const amplifiedAudioSamples = new Float32Array(numberOfSamples);
@@ -135,6 +137,7 @@ function createAndStartAudioBufferSource() {
 
 window.playOriginal = () => {
   beforePlay();
+  
   // Set the float audio samples to the left and right channel
   // of our playing audio buffer
   audioBuffer.getChannelData(0).set(originalAudioSamples);
