@@ -27,9 +27,15 @@ pub struct DougsClient {}
 impl DougsClient {
     #[wasm_bindgen(constructor)]
     pub fn new() -> Self {
-        log("new() was hit");
+        console_error_panic_hook::set_once();
+        let gl = gl_setup::initialize_webgl_context().unwrap();
 
-        Self {}
+        Self {
+            // _program_color_2d: programs::Color2D::new(&gl),
+            // _program_color_2d_gradient: programs::Color2DGradient::new(&gl),
+            // program_graph_3d: programs::Graph3D::new(&gl),
+            // gl: gl,
+        }
     }
 
     pub fn update(&mut self, time: f32, height: f32, width: f32) -> Result<(), JsValue> {

@@ -13,6 +13,8 @@ use wasm_bindgen::prelude::*;
 extern "C" {
     #[wasm_bindgen(js_namespace = console)]
     fn log(s: &str);
+
+    fn alert(s: &str);
 }
 
 // #[wasm_bindgen]
@@ -28,6 +30,8 @@ impl DougsClient {
     #[wasm_bindgen(constructor)]
     pub fn new() -> Self {
         log("new() was hit");
+
+        alert("josh");
 
         Self {}
     }
