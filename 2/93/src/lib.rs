@@ -47,6 +47,8 @@ impl DougsClient {
 
     pub fn render(&self) {
         log("render() was hit");
+        // clear screen
+        self.gl.clear(GL::COLOR_BUFFER_BIT | GL::DEPTH_BUFFER_BIT);
     }
 }
 
