@@ -9,6 +9,7 @@
 extern crate wasm_bindgen;
 use wasm_bindgen::prelude::*;
 use web_sys::WebGlRenderingContext as GL;
+use web_sys::*;
 
 mod gl_setup;
 
@@ -24,7 +25,9 @@ extern "C" {
 // }
 
 #[wasm_bindgen]
-pub struct DougsClient {}
+pub struct DougsClient {
+    gl: WebGlRenderingContext,
+}
 
 #[wasm_bindgen]
 impl DougsClient {
@@ -34,6 +37,9 @@ impl DougsClient {
         let gl = gl_setup::initialize_webgl_context().unwrap();
 
         Self {
+
+            // Store graphics layer when we initialize DougsClient
+
             // _program_color_2d: programs::Color2D::new(&gl),
             // _program_color_2d_gradient: programs::Color2DGradient::new(&gl),
             // program_graph_3d: programs::Graph3D::new(&gl),
