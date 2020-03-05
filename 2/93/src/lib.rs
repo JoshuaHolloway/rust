@@ -37,9 +37,8 @@ impl DougsClient {
         let gl = gl_setup::initialize_webgl_context().unwrap();
 
         Self {
-
             // Store graphics layer when we initialize DougsClient
-
+            gl: gl,
             // _program_color_2d: programs::Color2D::new(&gl),
             // _program_color_2d_gradient: programs::Color2DGradient::new(&gl),
             // program_graph_3d: programs::Graph3D::new(&gl),
