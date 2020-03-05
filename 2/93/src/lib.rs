@@ -8,6 +8,7 @@
 
 extern crate wasm_bindgen;
 use wasm_bindgen::prelude::*;
+use web_sys::WebGlRenderingContext as GL;
 
 #[wasm_bindgen]
 extern "C" {
