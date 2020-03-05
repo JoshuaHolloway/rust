@@ -10,6 +10,8 @@ extern crate wasm_bindgen;
 use wasm_bindgen::prelude::*;
 use web_sys::WebGlRenderingContext as GL;
 
+mod gl_setup;
+
 #[wasm_bindgen]
 extern "C" {
     #[wasm_bindgen(js_namespace = console)]
