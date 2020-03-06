@@ -33,3 +33,26 @@
 * 5: WASM-BindGen (https://github.com/rustwasm/wasm-bindgen/tree/master/examples/without-a-bundler-no-modules)
     * 00: without-a-bundler-no-modules
     * 01: without-a-bundler
+    * 02: dom
+    * 03: add
+    * 04: canvas
+    * 05: hello
+    * 06: julia-set
+    * 07: paint
+    * 08: char
+    * 09: closures
+    * 10: console_log
+    * 11: duck-typed-interfaces
+    * 12: fetch
+    * 13: guide-supported-types-examples
+    * 14: import_js
+    * 15: performance
+    * 16: raytracing-animation-frame
+    * 17: request-animation-frame
+    * 18: todomvc
+    * 19: wasm2js
+    * 20: wasm-in-wasm
+    * 21: webaudio
+    * 22: webgl
+    * 23: websockets
+
