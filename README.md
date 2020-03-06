@@ -31,4 +31,5 @@
     * 00: Setup
 
 * 5: WASM-BindGen (https://github.com/rustwasm/wasm-bindgen/tree/master/examples/without-a-bundler-no-modules)
-    * 00: without-a-bundler-no-modules 
+    * 00: without-a-bundler-no-modules
+    * 01: without-a-bundler
