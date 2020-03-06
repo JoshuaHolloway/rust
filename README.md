@@ -15,8 +15,9 @@
     *   .
     * 90: WebAssembly (part-1):  Base setup
     * 91: WebAssembly (part-2):  Rust <-> WASM
-    * 92: WebAssembly (part-3):  Finishing the 
+    * 92: WebAssembly (part-3):  Finishing  
     * 92a: Extending 92 to use other JS-functions
+    
     
     boilerplate setup
     * Going deeper with WebGL (Taking the red-pill):
