@@ -29,3 +29,6 @@
 * 4: Intro to Rust Web Assembly with Rust's Wasm Bindgen Library 
     * (from Tensor Programming)
     * 00: Setup
+
+* 5: WASM-BindGen (https://github.com/rustwasm/wasm-bindgen/tree/master/examples/without-a-bundler-no-modules)
+    * 00: without-a-bundler-no-modules 
